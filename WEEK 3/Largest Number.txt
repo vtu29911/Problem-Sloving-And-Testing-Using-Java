@@ -1,0 +1,27 @@
+import java.util.Arrays;
+
+class Solution {
+    public String largestNumber(int[] nums) {
+        // Convert integer array to String array
+        String[] strNums = new String[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            strNums[i] = String.valueOf(nums[i]);
+        }
+
+        // Custom sort based on concatenated comparison
+        Arrays.sort(strNums, (a, b) -> (b + a).compareTo(a + b));
+
+        // Edge case: If the largest number is "0", the result is "0" (e.g., [0, 0])
+        if (strNums[0].equals("0")) {
+            return "0";
+        }
+
+        // Build the final result string
+        StringBuilder result = new StringBuilder();
+        for (String str : strNums) {
+            result.append(str);
+        }
+
+        return result.toString();
+    }
+}
